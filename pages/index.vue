@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <main class="bg-red-200 h-32">
-    <div class="flex flex-justify-center flex-items-center h-full">
-      Index Page
+  <div class="flex justify-center items-center w-full h-90%">
+    <div class="w-50%">
+      <cases />
     </div>
-  </main>
+  </div>
 </template>

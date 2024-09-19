@@ -10,12 +10,25 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@primevue/themes": "4.0.7",
+    "@vueuse/core": "11.1.0",
+    "@vueuse/integrations": "11.1.0",
+    "@vueuse/nuxt": "11.1.0",
+    "fuse.js": "7.0.0",
     "nuxt": "^3.13.0",
+    "primeicons": "7.0.0",
+    "primevue": "4.0.7",
+    "sass": "1.79.1",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "3.6.2",
+    "@iconify-json/noto": "1.2.0",
+    "@primevue/nuxt-module": "4.0.7",
     "@unocss/nuxt": "0.62.4",
+    "eslint": "9.10.0",
+    "eslint-plugin-format": "0.1.2",
     "unocss": "0.62.4"
   }
 }

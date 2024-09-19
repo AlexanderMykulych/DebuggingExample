@@ -1,0 +1,13 @@
+@import 'primeicons/primeicons.css';
+
+@layer reset, primevue;
+
+/* Reset CSS */
+@layer reset {
+  body,
+  main {
+    height: 100vh;
+    margin: 0;
+    width: 100wh;
+  }
+}
