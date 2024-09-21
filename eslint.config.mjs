@@ -10,6 +10,7 @@ export default antfu(
     rules: {
       'semi': ['error', 'never'],
       'style/semi': ['error', 'never'],
+      'no-alert': 'off',
     },
   },
 )
