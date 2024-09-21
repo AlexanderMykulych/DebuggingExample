@@ -28,6 +28,10 @@ function removeBook(book) {
     backet.value.splice(index, 1)
   }
 }
+
+function removeByTitle(title) {
+  backet.value = backet.value.filter(x => x.title !== title)
+}
 </script>
 
 <template>
@@ -36,7 +40,7 @@ function removeBook(book) {
       <span class="text-10">
         Книжковий магазин
       </span>
-      <BooksBacket class="right-10px" :backet="backet" />
+      <BooksBacket class="right-10px" :backet="backet" @remove-by-title="removeByTitle" />
     </div>
     <booksGrid :books-data="booksData" :backet="backet" @buy="buyBook" @remove="removeBook" />
   </div>
