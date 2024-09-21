@@ -10,17 +10,24 @@ const router = useRouter()
 
 const search = ref('')
 const selectedValue = ref()
+
+function getGroupsFromPath(path: string) {
+  const paths = path.split('/').filter(x => !!x)
+
+  return paths.slice(0, paths.length - 1)
+}
 const items = computed(() => router.getRoutes()
   .filter(x => x.meta.label)
   .map(x => ({
     ...x.meta,
     page: x,
+    groups: getGroupsFromPath(x.path),
   })),
 )
 
 const { results } = useFuse(search, items.value, {
   fuseOptions: {
-    keys: ['label'],
+    keys: ['label', 'groups'],
   },
 })
 
@@ -31,33 +38,71 @@ const filteredItems = computed(() => {
 
   return items.value
 })
-const groupedItems = computed(() => {
-  const result = filteredItems.value.reduce((prevValue, current) => {
-    const groups = current.groups
 
-    groups.forEach((group) => {
-      if (!prevValue[group]) {
-        prevValue[group] = {
-          label: '',
-          items: [],
-        }
+function capitalizeFirstLetter(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
+const treeItems = computed(() => {
+  const tree = []
+  function findInTree(root, label) {
+    return root.find(x => x.label === label)
+  }
+
+  filteredItems.value.forEach((item) => {
+    let node = tree
+
+    item.groups.forEach((group) => {
+      const childNode = findInTree(node, group)
+
+      if (childNode) {
+        node = childNode.children
       }
+      else {
+        const newNode = {
+          key: group,
+          label: group,
+          children: [],
+        }
+        node.push(newNode)
 
-      prevValue[group].label = group
-      prevValue[group].items.push(current)
+        node = newNode.children
+      }
     })
 
-    return prevValue
-  }, {})
+    node.push({
+      key: item.label,
+      label: item.label,
+      page: item.page,
+    })
+  })
 
-  return Object.entries(result).map(([_key, value]) => value)
+  return tree
 })
 
 function optionClick(option) {
+  if (!option.page) {
+    return
+  }
+
   router.push(option.page)
 
   emit('click')
 }
+
+const expandedKeys = ref({})
+
+function expandAll() {
+  const allGroupsExpandObj = Object.fromEntries(
+    filteredItems.value
+      .flatMap(x => x.groups)
+      .map(x => [x, true]),
+  )
+
+  expandedKeys.value = allGroupsExpandObj
+};
+
+onMounted(() => expandAll())
 </script>
 
 <template>
@@ -66,16 +111,12 @@ function optionClick(option) {
       <InputText id="search" v-model="search" class="w-full" />
       <label for="search">🔍Search</label>
     </FloatLabel>
-    <Listbox
-      v-model="selectedValue" :options="groupedItems"
-      option-label="label" option-group-label="label" option-group-children="items"
-      class="w-full h-full" list-style="max-height:100%;"
-    >
-      <template #option="{ option }">
-        <div @click="optionClick(option)">
-          {{ option.label }}
+    <Tree v-model:expanded-keys="expandedKeys" :value="treeItems" class="w-full md:w-[30rem]">
+      <template #default="{ node }">
+        <div class="cursor-pointer" @click="optionClick(node)">
+          {{ decodeURIComponent(capitalizeFirstLetter(node.label)) }}
         </div>
       </template>
-    </Listbox>
+    </Tree>
   </div>
 </template>

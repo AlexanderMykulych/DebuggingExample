@@ -1,7 +1,6 @@
 <script setup>
 definePageMeta({
-  label: 'Get Data from API. Books',
-  groups: ['Network'],
+  label: 'Book Store',
 })
 
 const authorData = ref([])
