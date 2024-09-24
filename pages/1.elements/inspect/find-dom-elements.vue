@@ -8,19 +8,19 @@ definePageMeta({
   <div class="root">
     Root element
     <ul>
-      <li class="item1">
+      <li id="item1" class="item">
         Item 1
       </li>
-      <li class="item2">
+      <li id="item2" class="item">
         Item 2
       </li>
-      <li class="item3">
+      <li id="item3" class="item">
         Item 3
       </li>
-      <li class="item4">
+      <li id="item4" class="item">
         Item 4
       </li>
-      <li class="item5">
+      <li id="item5" class="item">
         Item 5
       </li>
     </ul>
