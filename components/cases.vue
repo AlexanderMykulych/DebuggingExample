@@ -77,7 +77,7 @@ const treeItems = computed(() => {
     })
   })
 
-  return tree
+  return tree.sort((a, b) => a.label.localeCompare(b.label))
 })
 
 function optionClick(option) {
