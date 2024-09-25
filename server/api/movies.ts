@@ -1,4 +1,145 @@
-export default defineEventHandler(() => {
+export default defineEventHandler((event) => {
+  event.node.res.setHeader('Custom-Header', `${Math.floor(Math.random() * 10) + 1}`)
+
+  if (event.node.req.headers.ua) {
+    return {
+      movies: [
+        {
+          title: 'Захар Беркут',
+          director: 'Ахтем Сеітаблаєв',
+          release_year: 2019,
+          genre: 'Історичний',
+          rating: 7.5,
+          cast: [
+            {
+              actor: 'Роман Луцький',
+              role: 'Іван Беркута',
+            },
+            {
+              actor: 'Олег Волощенко',
+              role: 'Захар Беркут',
+            },
+          ],
+          box_office: {
+            budget: 113000000,
+            gross_usa: 3000000,
+            gross_worldwide: 9000000,
+          },
+        },
+        {
+          title: 'Плем\'я',
+          director: 'Мирослав Слабошпицький',
+          release_year: 2014,
+          genre: 'Драма',
+          rating: 8.0,
+          cast: [
+            {
+              actor: 'Григорій Фесенко',
+              role: 'Сергій',
+            },
+            {
+              actor: 'Яна Новікова',
+              role: 'Анна',
+            },
+          ],
+          box_office: {
+            budget: 1500000,
+            gross_usa: 135000,
+            gross_worldwide: 515000,
+          },
+        },
+        {
+          title: 'Дике Поле',
+          director: 'Ярослав Лодигін',
+          release_year: 2018,
+          genre: 'Драма',
+          rating: 7.2,
+          cast: [
+            {
+              actor: 'Олег Москаленко',
+              role: 'Герман',
+            },
+            {
+              actor: 'Володимир Ямненко',
+              role: 'Калинич',
+            },
+          ],
+          box_office: {
+            budget: 37000000,
+            gross_usa: 100000,
+            gross_worldwide: 300000,
+          },
+        },
+        {
+          title: 'Кіборги',
+          director: 'Ахтем Сеітаблаєв',
+          release_year: 2017,
+          genre: 'Військовий',
+          rating: 8.4,
+          cast: [
+            {
+              actor: 'В\'ячеслав Довженко',
+              role: 'Серпень',
+            },
+            {
+              actor: 'Макар Тихомиров',
+              role: 'Мажор',
+            },
+          ],
+          box_office: {
+            budget: 48000000,
+            gross_usa: 200000,
+            gross_worldwide: 850000,
+          },
+        },
+        {
+          title: 'Толока',
+          director: 'Михайло Іллєнко',
+          release_year: 2020,
+          genre: 'Історичний',
+          rating: 7.0,
+          cast: [
+            {
+              actor: 'Іванна Іллєнко',
+              role: 'Катерина',
+            },
+            {
+              actor: 'Дмитро Рибалевський',
+              role: 'Михайло',
+            },
+          ],
+          box_office: {
+            budget: 15000000,
+            gross_usa: 50000,
+            gross_worldwide: 250000,
+          },
+        },
+        {
+          title: 'Мої думки тихі',
+          director: 'Антоніо Лукіч',
+          release_year: 2019,
+          genre: 'Комедія',
+          rating: 8.1,
+          cast: [
+            {
+              actor: 'Ірма Вітовська',
+              role: 'Галина',
+            },
+            {
+              actor: 'Андрій Лідаговський',
+              role: 'Вадим',
+            },
+          ],
+          box_office: {
+            budget: 9000000,
+            gross_usa: 150000,
+            gross_worldwide: 550000,
+          },
+        },
+      ],
+    }
+  }
+
   return {
     movies: [
       {

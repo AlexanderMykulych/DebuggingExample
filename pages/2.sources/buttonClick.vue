@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 definePageMeta({
   label: 'Button Native Click',
   groups: ['Sources'],

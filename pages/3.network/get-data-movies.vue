@@ -27,7 +27,7 @@ function showCast(movie) {
       Get Movies
     </Button>
 
-    <DataTable :value="data" table-style="min-width: 50rem" striped-rows>
+    <DataTable v-if="data?.length > 0" :value="data" table-style="min-width: 50rem" striped-rows>
       <Column field="title" sortable header="Title" />
       <Column field="director" sortable header="Director" />
       <Column field="release_year" header="Year" />
