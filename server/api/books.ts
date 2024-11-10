@@ -32,6 +32,14 @@ export default defineEventHandler(() => {
           coverImage: '/images/kobzar.png',
           description: 'Збірка віршів та поем, яка є символом української літератури та культури.',
         },
+        {
+          title: 'Кобзар',
+          year: 1840,
+          genre: 'Поезія',
+          price: 400,
+          coverImage: '/images/kobzar2.png',
+          description: 'Вибрані твори. Збірка віршів та поем, яка є символом української літератури та культури.',
+        },
       ],
     },
     {

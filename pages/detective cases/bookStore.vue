@@ -31,6 +31,10 @@ function removeBook(book) {
 function removeByTitle(title) {
   backet.value = backet.value.filter(x => x.title !== title)
 }
+
+function showPopup() {
+  alert('У вас є 10% знижки!')
+}
 </script>
 
 <template>

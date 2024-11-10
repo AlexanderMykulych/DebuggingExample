@@ -8,6 +8,13 @@ const emit = defineEmits(['buy', 'remove'])
 
 const instancesInBacketCount = computed(() => props.backet?.filter(x => x.title === props.book?.title)?.length)
 const isInBacket = computed(() => instancesInBacketCount.value > 0)
+
+function buyBook() {
+  if (props.backet.length > 5) {
+    showPopup()
+  }
+  emit('buy')
+}
 </script>
 
 <template>
@@ -60,7 +67,7 @@ const isInBacket = computed(() => instancesInBacketCount.value > 0)
               icon="pi pi-shopping-cart"
               :label="isInBacket ? '+1' : 'Купити'"
               class="flex-auto whitespace-nowrap"
-              @click="emit('buy')"
+              @click="buyBook"
             />
           </div>
         </div>

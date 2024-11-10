@@ -9,6 +9,8 @@ async function getMovies() {
   const { data: moviesData } = await useFetch('/api/movies')
 
   data.value = moviesData.value.movies
+
+  longRunningTask()
 }
 
 const castModalVisible = ref(false)
@@ -18,6 +20,24 @@ function showCast(movie) {
   selectedMovie.value = movie
 
   castModalVisible.value = true
+}
+
+function longRunningTask() {
+  console.log('Старт операції')
+
+  const start = Date.now()
+  let result = 0
+
+  for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < 1e9; i++) {
+      result += Math.sqrt(i)
+    }
+  }
+
+  const end = Date.now()
+  const duration = (end - start) / 1000
+
+  console.log(`Операція завершена за ${duration} секунд.`)
 }
 </script>
 
